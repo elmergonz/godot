@@ -1,4 +1,4 @@
-name: 🏁 Windows Builds
+name: 🏁 Windows C# Builds
 on: [push, pull_request]
 
 # Global Settings, so it can run
@@ -28,7 +28,7 @@ jobs:
             tests: true
             # Skip debug symbols, they're way too big with MSVC.
             sconsflags: debug_symbols=no vsproj=yes
-            bin: "./bin/godot.windows*.x86_64*.exe"
+            bin: "./bin/godot.windows.editor.x86_64.mono.exe"
 
           - name: Template (target=template_release, tools=no)
             cache-name: windows-template
