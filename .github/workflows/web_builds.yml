@@ -13,38 +13,38 @@ concurrency:
   group: ci-${{github.actor}}-${{github.head_ref || github.run_number}}-${{github.ref}}-web
   cancel-in-progress: true
 
-jobs:
-  web-template:
-    runs-on: "ubuntu-20.04"
-    name: Template (target=template_release)
+# jobs:
+#   web-template:
+#     runs-on: "ubuntu-20.04"
+#     name: Template (target=template_release)
 
-    steps:
-      - uses: actions/checkout@v3
+#     steps:
+#       - uses: actions/checkout@v3
 
-      - name: Set up Emscripten latest
-        uses: mymindstorm/setup-emsdk@v12
-        with:
-          version: ${{env.EM_VERSION}}
-          actions-cache-folder: ${{env.EM_CACHE_FOLDER}}
+#       - name: Set up Emscripten latest
+#         uses: mymindstorm/setup-emsdk@v12
+#         with:
+#           version: ${{env.EM_VERSION}}
+#           actions-cache-folder: ${{env.EM_CACHE_FOLDER}}
 
-      - name: Verify Emscripten setup
-        run: |
-          emcc -v
+#       - name: Verify Emscripten setup
+#         run: |
+#           emcc -v
 
-      - name: Setup Godot build cache
-        uses: ./.github/actions/godot-cache
-        continue-on-error: true
+#       - name: Setup Godot build cache
+#         uses: ./.github/actions/godot-cache
+#         continue-on-error: true
 
-      - name: Setup python and scons
-        uses: ./.github/actions/godot-deps
+#       - name: Setup python and scons
+#         uses: ./.github/actions/godot-deps
 
-      - name: Compilation
-        uses: ./.github/actions/godot-build
-        with:
-          sconsflags: ${{ env.SCONSFLAGS }}
-          platform: web
-          target: template_release
-          tests: false
+#       - name: Compilation
+#         uses: ./.github/actions/godot-build
+#         with:
+#           sconsflags: ${{ env.SCONSFLAGS }}
+#           platform: web
+#           target: template_release
+#           tests: false
 
-      - name: Upload artifact
-        uses: ./.github/actions/upload-artifact
+#       - name: Upload artifact
+#         uses: ./.github/actions/upload-artifact
