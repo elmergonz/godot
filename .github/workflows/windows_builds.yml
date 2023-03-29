@@ -1,7 +1,7 @@
 name: 🏁 Windows Builds
 on: [push, pull_request]
 
-# Global Settings
+# Global Settings, so it can run
 # SCONS_CACHE for windows must be set in the build environment
 env:
   # Only used for the cache key. Increment version to force clean build.
